@@ -1,21 +1,11 @@
 # README.md
----
-title: "THM: Server From Hell "
-author: ["Mark Lawton ", "mark@mwlawton.uk"]
-date: "2020-11-02"
-subject: "Server From Hell"
-keywords: [TryHackMe. THM, PenTest, OSCP, Report]
-subtitle: "Writeup / PenTest report for "Server From Hell""
-lang: "en"
-titlepage: true
-titlepage-color: "1E90FF"
-titlepage-text-color: "FFFAFA"
-titlepage-rule-color: "FFFAFA"
-titlepage-rule-height: 2
-book: true
-classoption: oneside
-...
-### ip= 10.10.189.97
+
+### ip= 10.10.189.97 
+
+### /etc/hosts
+```
+10.10.189.97   serverfromhell
+```
 
 ### Room
 
@@ -47,9 +37,9 @@ and outputing the results to txt file
 ```
 ### bannergrab.txt
 ```
-within all the maddness we see go to port 12345
+within all the maddness we see go to port [REDACTED]
 
-nc serverfromhell 12345
+nc serverfromhell [REDACTED]
 
 NFS shares are cool, especially when they are misconfigured
 It's on the standard port, no need for another scan
@@ -122,7 +112,7 @@ https://lostmypass.com
 
 backup.zip password 
 
-zxcvbnm
+[REDACTED]
 
 ```
 ### backup.zip
@@ -135,7 +125,7 @@ authorized_keys  flag.txt  hint.txt  id_rsa  id_rsa.pub
 ### flag.txt 
 ```
 cat home/hades/.ssh/flag.txt 
-thm{h0p3_y0u_l1k3d_th3_f1r3w4ll}
+[redacted]
 ```
 ### hint.txt
 ```
@@ -183,7 +173,7 @@ system("ls")
 user.txt
 
 system("cat user.txt")
-thm{sh3ll_3c4p3_15_v3ry_1337}
+[REDACTED]
 
 ```
 ### linpeas.sh
@@ -280,6 +270,6 @@ from here we can see we found the root flag
 ```
 ### root.txt
 ```
-thm{w0w_n1c3_3sc4l4t10n}
+[REDACTED]
 
 ```
