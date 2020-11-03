@@ -106,7 +106,7 @@ found an online zip cracker
 https://lostmypass.com
 ```
 
-![](images/lostmypass.com-backup-zip.png)
+![](images/lostmypass2.png)
 
 ```
 
