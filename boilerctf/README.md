@@ -1,21 +1,6 @@
 # Boiler CTF
 ```
----
-title: "TryHackMe: Boiler CTF "
-author: ["Mark Lawton ", "mark@mwlawton.uk"]
-date: "20201104"
-subject: "Boiler CTF"
-keywords: [TryHackMe. THM, PenTest, OSCP, Report]
-subtitle: "Writeup / PenTest report for Boiler CTF"
-lang: "en"
-titlepage: true
-titlepage-color: "1E90FF"
-titlepage-text-color: "FFFAFA"
-titlepage-rule-color: "FFFAFA"
-titlepage-rule-height: 2
-book: true
-classification: public
-...
+https://tryhackme.com/room/boilerctf2
 ```
 ### ip= 10.10.1.24
 
