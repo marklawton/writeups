@@ -1,20 +1,5 @@
 # README.md
----
-title: "TryHackMe : StartUp "
-author: ["Mark Lawton ", "mark@mwlawton.uk"]
-date: "20201109"
-subject: "Startup"
-keywords: [TryHackMe. THM, PenTest, OSCP, Report]
-subtitle: "Writeup / PenTest report for "Startup""
-lang: "en"
-titlepage: true
-titlepage-color: "1E90FF"
-titlepage-text-color: "FFFAFA"
-titlepage-rule-color: "FFFAFA"
-titlepage-rule-height: 2
-book: true
-classoption: oneside
-...
+
 ### ip= 10.10.48.14
 #### /etc/hosts 10.10.48.14  startup startup.thm
 ```
@@ -23,7 +8,7 @@ https://tryhackme.com/room/startup
 ![](images/startup-header.png)
 ![](images/startup-task.png)
 ```
-So lets start with the obivous port scan, i ont have rustscan on this vm yet so lets stick to nmap.
+So lets start with the obvious port scan, I don't have rustscan on this vm yet so lets stick to nmap.
 ```
 ### Nmap 
 ```
@@ -151,7 +136,7 @@ now moving to the /incidents folder, we scp the pcapng file over to our kali mac
 ```
 ### wireshark
 ```
-This part was pain saking (I'm not a wireshark user by any means) finally we found something interesting. 
+This part was painful (I'm not a wireshark user by any means) finally we found something interesting. 
 ```
 ![](images/startup-lenpass2.png)
 ```
