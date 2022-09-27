@@ -1,5 +1,8 @@
 # Jumpbox THM
 
+![](images/jumpbox.png)
+
+
 ### interesting nmap results 
 
 ```
