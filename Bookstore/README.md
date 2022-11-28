@@ -101,7 +101,7 @@ the previous version of the api...
 >clicking on the code we get more info on the right, by the looks of things the Magic number is some sort of equation! 
 ![](img/19.png)
 
-> hoverign over the Hexidedcimal numbers it auto converts to Decimal which i would assume i need for the Magic number to work!
+> hovering over the Hexidedcimal numbers it auto converts to Decimal which i would assume i need for the Magic number to work!
 
 ![](img/20.png)
 
